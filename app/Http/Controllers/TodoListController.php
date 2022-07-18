@@ -18,10 +18,6 @@ class TodoListController extends Controller
         return response($list);
     }
 
-    public function helloWorld()
-    {
-        return "h";
-    }
 
     /**
      * Show the form for creating a new resource.
