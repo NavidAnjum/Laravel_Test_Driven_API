@@ -19,13 +19,13 @@ class TodoListTest extends TestCase
     public function testForFetchTodoList()
     {
         //Added withoutExceptionHandling() in TestCase class
-       // $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         //preparation
-        TodoList::create(['name'=>'navid']);
+        TodoList::create(['name' => 'navid']);
         //action
         $responce = $this->getJson(route('todo-lists'));
         dd($responce);
         //assertion
-        $this->assertEquals(1,count($responce->json()));
+        $this->assertEquals(1, count($responce->json()));
     }
 }
