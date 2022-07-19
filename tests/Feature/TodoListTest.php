@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\TodoList;
+use Database\Seeders\TodoListSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -22,8 +23,11 @@ class TodoListTest extends TestCase
         //Added withoutExceptionHandling() in TestCase class
         // $this->withoutExceptionHandling();
         //preparation
-        $res=TodoList::factory()->create();
-        dd($res);
+       // $res=TodoList::factory()->create();
+
+		// Run a single seeder...
+		$this->seed(TodoListSeeder::class);
+
         //action
         $responce = $this->getJson(route('todo-lists'));
         //assertion
