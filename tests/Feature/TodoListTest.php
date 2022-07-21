@@ -24,7 +24,6 @@ class TodoListTest extends TestCase
         // $this->withoutExceptionHandling();
         //preparation
        // $res=TodoList::factory()->create();
-
 		// Run a single seeder...
 		$this->seed(TodoListSeeder::class);
 
@@ -33,4 +32,15 @@ class TodoListTest extends TestCase
         //assertion
         $this->assertEquals(1, count($responce->json()));
     }
+
+    public function testFetchSingleTodoList(){
+		//preparation
+
+		//action
+		$responce=$this->getJson(route('todo-list.show',1))->json();
+
+		//assertion
+		$responce->assertStatus(200);
+
+	}
 }
