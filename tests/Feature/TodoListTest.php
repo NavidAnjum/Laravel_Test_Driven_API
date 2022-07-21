@@ -35,12 +35,14 @@ class TodoListTest extends TestCase
 
     public function testFetchSingleTodoList(){
 		//preparation
+		$list=$this->seed(TodoListSeeder::class);
 
 		//action
-		$responce=$this->getJson(route('todo-list.show',1))->json();
+		$responce=$this->getJson(route('todo-list.show',1));
 
 		//assertion
 		$responce->assertStatus(200);
+		$this->assertEquals($responce->json()['name'],"Navid");
 
 	}
 }
