@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TodoList;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TodoListController extends Controller
 {
@@ -36,6 +37,12 @@ class TodoListController extends Controller
      */
     public function store(Request $request)
     {
+		//$list=TodoList::create($request->all());
+		$request->validate(['name'=>['required']]);
+
+		$list=TodoList::factory()->create(['name'=>$request->name]);
+
+    	return response($list,Response::HTTP_CREATED);
     }
 
     /**
@@ -46,7 +53,7 @@ class TodoListController extends Controller
      */
     public function show(TodoList $todoList)
     {
-        //
+		return response($todoList);
     }
 
     /**
@@ -80,6 +87,7 @@ class TodoListController extends Controller
      */
     public function destroy(TodoList $todoList)
     {
-        //
+		$res= $todoList->delete();
+		return response('',Response::HTTP_NO_CONTENT);
     }
 }
