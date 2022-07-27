@@ -57,4 +57,17 @@ class TodoListTest extends TestCase
 
     	$this->assertDatabaseHas('todo_lists',['name'=>'My List1']);
 	}
+
+	public function testValidationTodoList(){
+    	$this->withoutExceptionHandling();
+		$responce=$this->postJson(route('todo-store'),['name'=>'My List1']);
+		$responce->assertCreated();
+    }
+
+    public function testDeleteTodoList(){
+    	$this->withoutExceptionHandling();
+    	$res=$this->deleteJson(route('todo-list.destroy',$this->list->id))->assertNoContent()
+		;
+
+	}
 }
