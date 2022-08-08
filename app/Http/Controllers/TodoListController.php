@@ -76,7 +76,12 @@ class TodoListController extends Controller
      */
     public function update(Request $request, TodoList $todoList)
     {
-        //
+		$request->validate(['name'=>['required']]);
+
+		$list=$todoList->update(['name'=>$request->name]);
+
+		return $list;
+
     }
 
     /**
