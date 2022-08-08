@@ -65,9 +65,14 @@ class TodoListTest extends TestCase
     }
 
     public function testDeleteTodoList(){
-    	$this->withoutExceptionHandling();
-    	$res=$this->deleteJson(route('todo-list.destroy',$this->list->id))->assertNoContent()
-		;
+    	$this->withExceptionHandling();
+    	$res=$this->deleteJson(route('todo-list.destroy',$this->list->id))->assertNoContent();
 
 	}
+
+	public function testUpdateTodoList(){
+    	$this->putJson(route('todo-list.update',$this->list->id),['name'=>'Testing Updated Name'])
+			->assertOk();
+    }
+
 }
